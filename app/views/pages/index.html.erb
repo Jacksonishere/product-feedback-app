@@ -1,13 +1,62 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
-<p id="text">Testing</p>
-<button id="test-btn">
-  Click me!
-</button>
+<div class="intro">
+  <div class="container heading">
+    <div class="heading-content">
+      <strong class="fem">Frontend Mentor</strong>
+      <p>Feedback Board</p>
+    </div>
+
+    <div id="ham-btn" class="toggle-menu">
+      <span class="first"></span>
+      <span class="second"></span>
+      <span class="third"></span>
+    </div>
+  </div>
+
+  <div class="menu">
+    <div class="exit-click"></div>
+    <div class="menu-container">
+      <ul class="categories">
+        <button class="category">All</button>
+        <button class="category">UI</button>
+        <button class="category">UX</button>
+        <button class="category">Enhancement</button>
+      </ul>
+
+      <div class="roadmap">
+        <div class="roadmap-heading">
+          <strong>Roadmap</strong>
+          <a href="#">View</a>
+        </div>
+        <ul class="progress-chart">
+          <li class="planned">
+            <p>Planned</p>
+            <strong>2</strong>
+          </li>
+          <li class="progress">
+            <p>In-Progress</p>
+            <strong>3</strong>
+          </li>
+          <li class="live">
+            <p>Live</p>
+            <strong>1</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <script>
   $(document).on("turbolinks:load", () => {
-    console.log("turbolinks loaded");
-    
-    $("#test-btn").click(() => console.log("clicked"))
+    $("#ham-btn").click(() => {
+      $(".intro").toggleClass("show");
+    })
+
+    $(".exit-click").click(() => {
+      $(".intro").removeClass("show");
+    })
   })
 </script>

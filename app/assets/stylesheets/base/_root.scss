@@ -2,8 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap');
 
 :root {
-	--fs-400: 1rem;
-	--fs-500: 1.125rem;
+	// --fs-400: 1rem;
+    --fs-400: clamp(.8125rem, 1.7vw, 1rem);
+    --fs-500: clamp(.9375rem, 2vw, 1.125rem);
+
 	--fs-600: 1.25rem;
 
 	--fs-h1: 3rem;
@@ -28,6 +30,8 @@ $white-gray: #F2F4FF;
 $super-white-gray: #F7F8FD;
 $white: #FFFF;
 $orange: #F49F85;
+
+$gradiant: radial-gradient( ellipse at right top, rgba(232, 77, 112, 1) 0%, rgba(163, 55, 246, 1) 60%, rgba(40, 167, 237, 1) 100% );
 
 
 $ff-primary: 'Jost', sans-serif;

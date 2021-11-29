@@ -3,8 +3,14 @@
 .container {
 	@include center-auto;
 	width: unquote("min(90%, 1100px)");
+}
+
+.mobile-container {
+	@include center-auto;
 
 	@include breakpoint-up(medium) {
+		width: unquote("min(90%, 1100px)");
+        padding: 3rem 0;
 	}
 }
 
