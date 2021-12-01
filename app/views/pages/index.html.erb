@@ -12,9 +12,9 @@
     </div>
   </div>
 
-  <div class="menu">
+  <div class="menus">
     <div class="exit-click"></div>
-    <div class="menu-container">
+    <div class="menus-container">
       <ul class="categories">
         <button class="category">All</button>
         <button class="category">UI</button>
@@ -45,18 +45,88 @@
     </div>
   </div>
 </div>
+<div class="actions">
+  <div class="container actions-container">
+    <div class="actions-wrapper">
+      <div class="suggestions">
+        <p>0 Suggestions</p>
+      </div>
+      <p style="line-height: 0">Sort by :</p>
+      <button class="filter-toggle">Most Upvotes </button>
+      <a href="#" class="new-feedback">+ Add Feedback</a>
+    </div>
 
+    <div class="filters">
+      <button class="filter selected">Most Upvotes
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button>
 
+      <button class="filter">Least Upvotes<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button>
 
+      <button class="filter">Most Comments<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button>
+
+      <button class="filter">Least Comments<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button>
+    </div>
+  </div>
+</div>
 
 <script>
   $(document).on("turbolinks:load", () => {
+    const filter_btn = $(".filter-toggle")
+    //filtered thing in dropdown
+    let selected_filter = $(".filter").first()
+
+    //Toggle mobile menu
     $("#ham-btn").click(() => {
       $(".intro").toggleClass("show");
     })
-
+    //The exit empty div to close menu
     $(".exit-click").click(() => {
       $(".intro").removeClass("show");
     })
+    //reusable toggle dropdown menu
+    const handleToggle = () => {
+      filter_btn.toggleClass("opened");
+      $(".filters").fadeToggle(150);
+    }
+
+    //For toggling 
+    filter_btn.click((e) => {
+      console.log("filter btn clicked")
+      e.stopPropagation();
+      
+      //add event listener only when we open dropdown
+      if(!filter_btn.hasClass("opened")){
+        //listen for click outside buttons in dropdown. if clicked anywhere else but buttons, add class then unbind listener.
+        $(document).click((e) => {
+          if(!$(e.target).hasClass("filter")){
+            filter_btn.removeClass("opened");
+            $(".filters").fadeOut(150);
+            $(document).unbind("click")
+          }
+        })
+      }
+      //dropdown toggle clicked when open alrdy. unbind the listener.
+      else{
+        console.log("shouldnt add event handler to listen for outside click if dropdown opened alrdy")
+        $(document).unbind("click")
+      }
+      //regardless we want to 
+      handleToggle();
+    })
+
+    //handle filter clicks.
+    $('.filter').each((btn, item) => {
+      $(item).click(() => {
+        selected_filter.removeClass("selected");
+        selected_filter = $(item);
+        selected_filter.addClass("selected")
+        filter_btn.text(selected_filter.text())
+        handleToggle();
+
+      })
+    })
+
+
+
   })
 </script>
