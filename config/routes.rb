@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'auth'
   root 'pages#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  # instead of default users/sign_up it will be auth/sign_up. 
+  #map the routes from the default registration controller to our own registration controller.
+  devise_for :users, path: 'auth', controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  # map the base /auth path to the new registration action. This is incase the user submits wrong form then goes back to /auth and accidentally refreshes. Then they just hav this form again
+  devise_scope :user do
+    get 'auth', to: 'users/sessions#new'
+  end
+
+
 end
