@@ -379,3 +379,94 @@
 		}
 	}
 }
+
+.auth{
+    margin: 2rem auto;
+    width: unquote("min(88%, 416px)");
+    background-color: white;
+    border-radius: 10px;
+
+    &-content{
+        font-size: 1rem !important;
+        padding: 2rem 1.5rem;
+        
+        .profile-pic{
+            margin: 2rem auto;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            
+            background-image: asset-url("profile.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .auth-links{
+            @include flex(row);
+            border-bottom: .5px solid rgba(140,146,179, .4);
+
+            a{
+                position: relative;
+                flex-basis: 50%;
+                padding: 10px 0 20px;
+
+                &::before{
+                    display: none;
+                    content: "";
+                    position: absolute;
+                    bottom: -1px;
+                    left: 0;
+                    width: 100%;
+                    height: 4px;
+                    background-color: #AD1FEA;
+                }
+            }
+
+            .active{
+                font-weight: bold;
+                &::before{
+                    display: block;
+                }
+            }
+        }
+
+        label, a{
+            color: #3a4374;
+        }
+
+        .form{
+            margin-top: 2.5rem;
+            *:not(em){
+                width: 100%;
+            }
+            label{
+                @include flex(row, c, sb);
+                font-weight: bold;
+                font-size: 13px;
+                em{
+                    font-weight: 400;
+                }
+            }
+            input{
+                margin: 14px 0 18px;
+                background-color: rgba(247,248,253, 1);
+                padding: 12px 1rem;
+                font-size: 13px;
+                border-radius: 4px;
+                &:focus{
+                    outline: solid 1px rgba(70, 97, 230, 1);
+                }
+            }
+            .submit-btn{
+                padding: 12px 0;
+                color: white;
+                font-size: 13px;
+                border-radius: 6px;
+                background-color: #AD1FEA;
+            }
+
+        }
+
+    }
+}
