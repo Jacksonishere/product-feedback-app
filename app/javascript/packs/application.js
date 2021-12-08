@@ -3,17 +3,24 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import Rails from "@rails/ujs";
+import Turbolinks from "turbolinks";
+import * as ActiveStorage from "@rails/activestorage";
+import "channels";
 
-var jQuery = require('jquery')
+var jQuery = require("jquery");
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
 
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
 
+document.addEventListener("turbolinks:before-cache", function () {
+    console.log("about to cache turbolink")
+	const flash_message_element = document.querySelector(".flash");
+	if (flash_message_element) {
+		flash_message_element.remove();
+	}
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+});

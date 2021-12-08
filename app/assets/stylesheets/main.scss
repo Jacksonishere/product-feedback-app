@@ -464,15 +464,29 @@
                     outline: solid 1px rgba(70, 97, 230, 1);
                 }
             }
-            .error{
+            .error-field{
+                outline: solid 1px #C73E1D !important;
+            }
+            .error-msg{
+                position: relative;
+                margin-left: 16px;
                 margin-top: 8px; 
                 font-size: 11.5px;
-                font-style: italic;
-                text-transform: capitalize;
-                color: #7676a7;
+                color: #C73E1D;
+                &::before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 14px;
+                    height: 14px;
+                    transform: translate(-20px, 2px);
+                    background-image: asset-url('alert.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
             }
             .submit-btn{
-                margin-top: 14px;
+                margin-top: 28px;
                 padding: 12px 0;
                 color: white;
                 font-size: 13px;

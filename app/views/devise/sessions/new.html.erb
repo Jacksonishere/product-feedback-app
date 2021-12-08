@@ -1,10 +1,8 @@
-<%= form_for(resource, as: resource_name, url: user_session_path(resource_name), html: { class: "form signup" }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_for(resource, as: resource_name, url: user_session_path, html: { class: "form signup" }) do |f| %>
 
   <div class="field">
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, placeholder: "person@example.com", autocomplete: "email" %>
-    <p class='error'><%= show_errors(resource, :email) %></p>
+    <%= f.email_field :email, autofocus: true, placeholder: "person@example.com", autocomplete: "email", id: "error_email_field", required: true %>
   </div>
 
   <div class="field">
@@ -14,9 +12,12 @@
         <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <p class='error'><%= show_errors(resource, :password) %></p>
+    <%= f.password_field :password, autocomplete: "new-password", id: "error_password_field", required: true %>
   </div>
+
+  <% if flash.now[:alert] %>
+    <p class="error-msg flash"><%= flash.now[:alert] %></p>
+  <% end %>
 
   <div>
     <%= f.submit "Sign In", class: "submit-btn" %>
