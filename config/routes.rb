@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#index'
+  resources :feedbacks
 
   # instead of default users/sign_up it will be auth/sign_up. 
   #map the routes from the default registration controller to our own registration controller.

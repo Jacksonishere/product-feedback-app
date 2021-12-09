@@ -9,4 +9,6 @@ class User < ApplicationRecord
          length: {minimum: 3, maximum: 25}
 
   validates :full_name, presence: true
+
+  has_many :users
 end
