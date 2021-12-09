@@ -32,16 +32,13 @@
 	}
 
 	.heading {
+		strong {
+			font-size: clamp(15px, 1.75vw, 18px);
+		}
+
 		@include flex(row, c, sb);
 		height: 72px;
 		color: white;
-
-		strong {
-			font-size: clamp(15px, 1.95vw, 20px);
-		}
-		p {
-			opacity: 0.7;
-		}
 
 		@include breakpoint-up(medium) {
 			margin: 0;
@@ -50,13 +47,67 @@
 			background: $gradiant;
 			border-radius: 8px;
 
-			padding: 1.5rem;
+			padding: 1.125rem 1.125rem 1rem 1.125rem;
 
-			@include flex(column, fs, fe);
+			@include flex(column, fs);
 		}
 		@include breakpoint-up(large) {
-			height: 137px;
+			height: 178px;
 		}
+
+        &-content{
+            @include breakpoint-up(medium){
+                position: relative;
+                @include flex(column);
+                width: 100%;
+                flex-grow: 1;
+            }
+            .profile{
+                @include flex(row, c);
+                &-img{
+                    width: 40px;
+                    height: 40px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+                &-info{
+                    margin-left: 10px;
+                    line-height: 1;
+                    .name{
+                        font-size: 15px;
+                    }
+                    .username > strong{
+                        font-weight: 600;
+                        font-size: 13px;
+                    }
+                }
+                .sign{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 100;
+                }
+
+
+            }
+            .sign{
+                .fa-fw{
+                    width: 1.15em;
+                }
+                svg{
+                    margin: 0 5px 2.5px 0;
+                }
+                @include flex(row, c, fs);
+    
+            }
+            .fem{
+                margin-top: auto;
+                strong{
+                    display: block;
+                    margin-bottom: -4px;
+                }
+            }
+        }
 	}
 
 	.menus {
@@ -400,7 +451,7 @@
             height: 80px;
             border-radius: 50%;
             
-            background-image: asset-url("profile.jpg");
+            background-image: asset-url("default.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;

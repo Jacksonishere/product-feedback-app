@@ -2,10 +2,16 @@
   <div class="auth-content">
     <div class="profile-pic"></div> %>
     <%= form_for(resource, as: resource_name, url: user_registration_path, html: { class: "form signup" }) do |f| %>
-       <div class="field">
+      <div class="field">
         <%= f.label :username %>
         <%= f.text_field :username, autofocus: true, placeholder: "johndoe123", id: "error_username_field", required: true %>
         <%= f.error_message_for(:username) %>
+      </div>
+
+      <div class="field">
+        <%= f.label :full_name %>
+        <%= f.text_field :full_name, autofocus: true, placeholder: "john doe", id: "error_full_name_field", required: true %>
+        <%= f.error_message_for(:full_name) %>
       </div>
       
       <div class="field">
