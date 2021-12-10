@@ -2,6 +2,7 @@
 <%= extends :application do %>
   <section class="auth">
     <div class="auth-content">
+      <%= link_to 'Go Back', root_path, class: "go-back" %>
       <div class="profile-pic"></div>
       <div class="auth-links">
         <%= link_to 'Login', new_user_session_path, class: @login %>

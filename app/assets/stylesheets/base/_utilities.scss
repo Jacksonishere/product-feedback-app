@@ -10,7 +10,7 @@
 
 	@include breakpoint-up(medium) {
 		width: unquote("min(90%, 1100px)");
-        padding: clamp(3rem, 5.5vw, 4rem) 0;
+        margin: clamp(3rem, 5.5vw, 4rem) auto;
 	}
 }
 
