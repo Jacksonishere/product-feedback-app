@@ -1,0 +1,44 @@
+<section class="container new-feedback">
+  <%# top links %>
+  <%= render partial: 'shared/goback-nav', locals: {editable: false} %>
+
+  <%# the form %>
+  <div class="form-wrapper">
+    <%= form_with(model: @feedback, local: true, class: "feedback-form") do |f|%>
+      <%# plus icon %>
+      <div aria-hidden="true" class="feedback-form-icon">
+        <svg width="9" height="9" xmlns="http://www.w3.org/2000/svg"><text transform="translate(-24 -20)" fill="#F2F4FE" fill-rule="evenodd" font-family="Jost-Bold, Jost" font-size="14" font-weight="bold"><tspan x="24" y="27.5">+</tspan></text></svg>
+      </div>
+      
+      <h1>Create New Feedback</h1>
+
+      <div class="form-group">
+        <%= f.label :title, class: "" do %>
+          <strong>Feedback Title</strong><br>Add a short, descriptive headline<br>
+        <% end %>
+        <%= f.text_field :title, class: "", value: @feedback.title %>
+      </div>
+      
+      <div class="form-group select">
+        <%= f.label :category do %>
+          <strong>Category</strong><br>Choose a category for your feedback<br>
+        <% end %>
+        
+
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description, class: "" do %>
+          <strong>Feedback detail</strong><br>Include any specific comments on what should be improved, added, etc.<br>
+        <% end %>
+        <%= f.text_area :description, class: "", row: 8, value: @feedback.description %>
+      </div>
+      
+      <div class="form-links">
+        <%= f.submit class: "bordered-link purple" %>
+        <%= link_to 'Cancel', :back, class: "bordered-link dark-blue" %>
+      </div>
+    <% end %> 
+
+  </div>
+</section>
