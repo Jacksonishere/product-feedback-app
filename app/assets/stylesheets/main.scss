@@ -66,6 +66,7 @@
 	&-nav{
         @include flex(row, c);
         color: #647196;
+        font-weight: 600;
 
         svg {
             margin: 0 0.75rem 0 0;
@@ -519,11 +520,7 @@
 			color: red;
 		}
 		.go-back {
-			display: block;
-			text-align: left;
-			transform: translateY(-10px);
-			text-decoration: underline;
-			color: #3b5998;
+            margin: 0;
 		}
 
 		.profile-pic {

@@ -23,6 +23,19 @@
         <%= f.label :category do %>
           <strong>Category</strong><br>Choose a category for your feedback<br>
         <% end %>
+
+        <div class="selected">
+          <p class="selected-category"><%= @feedback.category ? @feedback.category : "Feature" %>
+          </p>
+          <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1l4 4 4-4" stroke="#F2F4FE" stroke-width="2" fill="none" fill-rule="evenodd"/>
+          </svg>
+        </div>
+        
+        <ul>
+        </ul>
+
+        
         
 
       </div>

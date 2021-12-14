@@ -2,11 +2,13 @@
 <%= extends :application do %>
   <section class="auth">
     <div class="auth-content">
-      <%= link_to 'Go Back', root_path, class: "go-back" %>
+      <%# <%= link_to 'Go Back', root_path, class: "go-back" %> 
+      
+      <%= render partial: 'shared/goback-nav', locals: {editable: false} %>
       <div class="profile-pic"></div>
       <div class="auth-links">
-        <%= link_to 'Login', new_user_session_path, class: @login %>
-        <%= link_to 'Sign Up', new_user_registration_path, class: @signup %>
+        <%= link_to 'Login', new_user_session_path, class: "#{'active' if is_signup_page?('sessions')}" %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: "#{'active' if is_signup_page?('registrations')}" %>
       </div>
       <%= yield %>
     </div>

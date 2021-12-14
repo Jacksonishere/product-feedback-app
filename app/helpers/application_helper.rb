@@ -12,6 +12,7 @@ module ApplicationHelper
     render template: layout
   end
 
+
   def show_errors(object, field_name)
     if object.errors.any?
       if !object.errors.messages[field_name].blank?
@@ -19,4 +20,8 @@ module ApplicationHelper
       end
     end
   end 
+
+  def is_signup_page?(controller)
+    controller_name == controller
+  end
 end
