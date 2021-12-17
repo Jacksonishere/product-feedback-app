@@ -101,23 +101,22 @@ $(document).on("turbolinks:load", function () {
 		signout_link.toggleClass("toggle");
 	});
 
-/**
- * CATEGORY SELECT IN FORM FUNCTIONALITY
- */
+	/**
+	 * CATEGORY SELECT IN FORM FUNCTIONALITY
+	 */
 	const selec_toggle = $(".category-toggle");
 	const selec_options = $(".category-options");
 	let selected_option = $(".category-options .selected").first();
 
-    const hidden_field = $("#feedback-form input[type='hidden']")
+	const hidden_field = $("#feedback-form input[type='hidden']");
 
-    console.log(hidden_field);
 	//reusable toggle dropdown menu
 	const handleCateSelectToggle = () => {
 		selec_toggle.toggleClass("opened");
 		selec_options.toggleClass("opened");
 	};
 
-    const outsideCateClickHandler = (e) => {
+	const outsideCateClickHandler = (e) => {
 		console.log("document handler");
 		// if the event target, the one who initiated the click isn't the
 		if (e.target.id !== "category-toggle") {
@@ -142,9 +141,41 @@ $(document).on("turbolinks:load", function () {
 			selected_option.removeClass("selected");
 			selected_option = $(item);
 			selected_option.addClass("selected");
-            const new_category = selected_option.text();
-            hidden_field.val(new_category);
+			const new_category = selected_option.text();
+			hidden_field.val(new_category);
 			selec_toggle.text(new_category);
 		});
+	});
+
+	let titleErr = false;
+	let descErr = false;
+
+	// inputs
+	const titleInput = $("#title-input");
+	const descInput = $("#desc-input");
+	$("#feedback-form").on("submit", (e) => {
+		console.log(titleErr, descErr);
+		console.log(titleInput.val(), descInput.val());
+
+		if (titleInput.val() === "" && !titleErr) {
+			$("<p class='error-msg'>Title can't be blank!</p>").insertAfter(titleInput);
+			titleErr = true;
+		} else if (titleInput.val() !== "" && titleErr) {
+			titleInput.next().remove();
+			titleErr = false;
+		}
+
+		if (descInput.val() === "" && !descErr) {
+			$("<p class='error-msg'>Description can't be blank!</p>").insertAfter(descInput);
+			descErr = true;
+		} else if (descInput.val() !== "" && descErr) {
+			descInput.next().remove();
+			descErr = false;
+		}
+
+		if (titleErr || descErr) {
+            // stops default sending post request to server
+			return false;
+		}
 	});
 });

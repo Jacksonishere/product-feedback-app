@@ -74,6 +74,28 @@
 	}
 }
 
+.error-field {
+    outline: solid 1px #c73e1d !important;
+}
+.error-msg {
+    position: relative;
+    margin-left: 16px;
+    margin-top: 8px;
+    font-size: 11.5px;
+    color: #c73e1d !important;
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        transform: translate(-20px, 2.5px);
+        background-image: asset-url("alert.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
 .selection-toggle {
 	position: relative;
 	@include flex(row, c);
@@ -624,27 +646,6 @@ select,
 			input {
 				background-color: rgba(247, 248, 253, 1);
 				padding: 12px 1rem;
-			}
-			.error-field {
-				outline: solid 1px #c73e1d !important;
-			}
-			.error-msg {
-				position: relative;
-				margin-left: 16px;
-				margin-top: 8px;
-				font-size: 11.5px;
-				color: #c73e1d;
-				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					width: 14px;
-					height: 14px;
-					transform: translate(-20px, 2px);
-					background-image: asset-url("alert.png");
-					background-repeat: no-repeat;
-					background-size: cover;
-				}
 			}
 			.submit-btn {
 				margin-top: 28px;

@@ -12,12 +12,12 @@
       
       <h1>Create New Feedback</h1>
 
-      <div class="form-group">
+      <div class="form-group title">
         <%= f.label :title, 'Feedback Title' %>
         <p class="desc">Add a short, descriptive headline
         </p>
 
-        <%= f.text_field :title, class: "", value: @feedback.title, autofocus: true %>
+        <%= f.text_field :title, id: "title-input", value: @feedback.title, autofocus: true %>
       </div>
       
 
@@ -46,17 +46,17 @@
 
       </div>
         
-      <div class="form-group">
+      <div class="form-group detail">
         <%= f.label :description, 'Feedback Detail' %>
 
         <p class="desc">Include any specific comments on what should be improved, added, etc.</p>
 
-        <%= f.text_area :description, class: "", row: 8, value: @feedback.description %>
+        <%= f.text_area :description, id: "desc-input", row: 8, value: @feedback.description %>
       </div>
       
       <div class="form-links">
         <%= f.submit class: "bordered-link purple" %>
-        <%= link_to 'Cancel', :back, class: "bordered-link dark-blue" %>
+        <%= link_to 'Cancel', root_path, class: "bordered-link dark-blue" %>
       </div>
     <% end %> 
 

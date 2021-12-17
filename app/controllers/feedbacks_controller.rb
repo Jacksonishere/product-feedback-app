@@ -1,17 +1,16 @@
 class FeedbacksController < ApplicationController
   before_action :authenticate_user!
+  before_action :feedback_categories, only: [:new, :create]
 
   def new
     @feedback = Feedback.new
-    @categories = ["Feature", "UI", "UX", "Enhancement", "Bug"]
   end
 
   def create
-    @feedback = Feedback.new(feedback_params)
-    new_feedback = current_user.feedbacks.build(@feedback)
+    @feedback = current_user.feedbacks.build(feedback_params)
 
-    if new_feedback.save
-      redirect_to new_feedback
+    if @feedback.save
+      redirect_to @feedback
     else
       render :new
     end
@@ -26,5 +25,9 @@ class FeedbacksController < ApplicationController
 
   def feedback_params
     params.require(:feedback).permit(:title, :description, :category)
+  end
+
+  def feedback_categories
+    @categories = ["Feature", "UI", "UX", "Enhancement", "Bug"]
   end
 end
