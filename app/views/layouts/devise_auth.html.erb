@@ -2,9 +2,8 @@
 <%= extends :application do %>
   <section class="auth">
     <div class="auth-content">
-      <%# <%= link_to 'Go Back', root_path, class: "go-back" %> 
-      
       <%= render partial: 'shared/goback-nav', locals: {editable: false} %>
+      
       <div class="profile-pic"></div>
       <div class="auth-links">
         <%= link_to 'Login', new_user_session_path, class: "#{'active' if is_signup_page?('sessions')}" %>

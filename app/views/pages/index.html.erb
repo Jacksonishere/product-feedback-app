@@ -1,5 +1,3 @@
-<%# <%= javascript_pack_tag 'homepage' %> 
-
 <div class="mobile-container main">
   <div class="intro">
     <div class="container heading">
@@ -84,21 +82,17 @@
           <p>0 Suggestions</p>
         </div>
         <p style="line-height: 0">Sort by :</p>
-        <button id="filter-toggle" class="filter-toggle">Most Upvotes </button>
+
+        <button id="filter-toggle" class="selection-toggle filter-toggle">Most Upvotes </button>
         <%= link_to '+ Add Feedback', new_feedback_path, class: "bordered-link purple"	 %>
       </div>
   
-      <ul class="filters">
-        <li>
-          <button class="filter selected">Most Upvotes
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button>
-        </li>
-  
-        <li><button class="filter">Least Upvotes<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button></li>
-  
-        <li><button class="filter">Most Comments<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button></li>
-  
-        <li><button class="filter">Least Comments<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg></button></li>
+      <ul class="filters selection-options">
+        <% @filters.each_with_index do |filter, index| %>
+          <li>
+            <button class="option filter <%= 'selected' if index == 0 %>"><%= filter %></button>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

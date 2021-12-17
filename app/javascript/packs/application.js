@@ -26,6 +26,7 @@ document.addEventListener("turbolinks:before-cache", function () {
 $(document).on("turbolinks:load", function () {
 	//Toggle mobile menu
 	$("#ham-btn").on("click", () => {
+		console.log("opening mobile menu");
 		$(".intro").toggleClass("show");
 	});
 	//The exit empty div to close menu
@@ -36,7 +37,6 @@ $(document).on("turbolinks:load", function () {
 	/**
 	 * FILTER TOGGLE FUNCTIONALITY
 	 */
-
 	const filter_btn = $(".filter-toggle");
 	//filtered thing in dropdown
 	let selected_filter = $(".filter").first();
@@ -44,7 +44,8 @@ $(document).on("turbolinks:load", function () {
 	//reusable toggle dropdown menu
 	const handleToggle = () => {
 		filter_btn.toggleClass("opened");
-		$(".filters").fadeToggle(150);
+		$(".filters").toggleClass("opened");
+		// $(".filters").fadeToggle(150);
 	};
 
 	// only attached to document if filter-btn or profile icon clicked.
@@ -69,7 +70,7 @@ $(document).on("turbolinks:load", function () {
 	//handle filter clicks.
 	$(".filter").each((btn, item) => {
 		$(item).on("click", (e) => {
-            e.stopPropagation();
+			e.stopPropagation();
 			selected_filter.removeClass("selected");
 			selected_filter = $(item);
 			selected_filter.addClass("selected");
@@ -82,7 +83,7 @@ $(document).on("turbolinks:load", function () {
 	 */
 
 	const profile_btn = $(".profile-img");
-    const signout_link = $("#sign-out");
+	const signout_link = $("#sign-out");
 
 	// only attached to document if filter-btn or profile icon clicked.
 	const outsideSignOutClickHandler = (e) => {
@@ -98,5 +99,52 @@ $(document).on("turbolinks:load", function () {
 			$(document)[0].addEventListener("click", outsideSignOutClickHandler, true);
 		}
 		signout_link.toggleClass("toggle");
+	});
+
+/**
+ * CATEGORY SELECT IN FORM FUNCTIONALITY
+ */
+	const selec_toggle = $(".category-toggle");
+	const selec_options = $(".category-options");
+	let selected_option = $(".category-options .selected").first();
+
+    const hidden_field = $("#feedback-form input[type='hidden']")
+
+    console.log(hidden_field);
+	//reusable toggle dropdown menu
+	const handleCateSelectToggle = () => {
+		selec_toggle.toggleClass("opened");
+		selec_options.toggleClass("opened");
+	};
+
+    const outsideCateClickHandler = (e) => {
+		console.log("document handler");
+		// if the event target, the one who initiated the click isn't the
+		if (e.target.id !== "category-toggle") {
+			handleCateSelectToggle();
+		}
+		$(document)[0].removeEventListener("click", outsideCateClickHandler, true);
+	};
+
+	//For toggling
+	selec_toggle.on("click", (e) => {
+		// e.stopPropagation();
+		if (!selec_toggle.hasClass("opened")) {
+			$(document)[0].addEventListener("click", outsideCateClickHandler, true);
+		}
+		handleCateSelectToggle();
+	});
+
+	//handle filter clicks.
+	$(".category-options .category").each((btn, item) => {
+		$(item).on("click", (e) => {
+			e.stopPropagation();
+			selected_option.removeClass("selected");
+			selected_option = $(item);
+			selected_option.addClass("selected");
+            const new_category = selected_option.text();
+            hidden_field.val(new_category);
+			selec_toggle.text(new_category);
+		});
 	});
 });

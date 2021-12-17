@@ -10,5 +10,5 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true
 
-  has_many :users
+  has_many :feedbacks
 end
