@@ -1,0 +1,8 @@
+<%= extends :application do %>
+  <div class="container crud-feedback-container">
+    
+    <%= render partial: 'shared/goback-nav', locals: {editable: is_editable?(@feedback) } %>
+
+    <%= yield %>
+  </div>
+<% end %>

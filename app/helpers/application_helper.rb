@@ -24,4 +24,8 @@ module ApplicationHelper
   def is_signup_page?(controller)
     controller_name == controller
   end
+
+  def is_editable?(feedback)
+     action_name == "show" && feedback.belongs_to_user?(current_user)
+  end
 end

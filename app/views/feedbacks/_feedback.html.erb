@@ -1,0 +1,31 @@
+<div class="feedback">
+
+  <%= link_to feedback_path(feedback), class:"feedback-content" do %>
+    <%= image_tag("default.jpg", class: "profile-img", id: "profile-img") %>
+    
+    <p class="feedback-info">
+      <strong class="name"><%= feedback.user.full_name %></strong>
+      <br>
+      <%= feedback.created_at.strftime("%Y-%m-%d") %>
+    </p>
+
+    <p class="body">
+      <strong>
+        <%= feedback.title %>
+      </strong>
+      <br>
+      <%= feedback.description %>
+    </p>
+
+    <p class="filled-box cate"><%= feedback.category %></p>
+  <% end %>
+
+
+
+
+  <%= button_to root_path, class: "filled-box like" do %>
+    <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/></svg><strong>0</strong>
+  <% end %>
+
+  <strong class="comment">12</strong>
+</div>

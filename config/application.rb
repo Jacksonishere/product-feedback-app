@@ -22,6 +22,8 @@ module ProductFeedbackApp
     config.to_prepare do
       Devise::SessionsController.layout "devise_auth"
       Devise::RegistrationsController.layout "devise_auth"
+
+      FeedbacksController.layout "feedbacks_layout"
     end
   end
 end

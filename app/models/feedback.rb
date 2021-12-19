@@ -5,4 +5,9 @@ class Feedback < ApplicationRecord
   attribute :category, :string, default: "Feature"
 
   belongs_to :user
+
+  def belongs_to_user?(user)
+    id == user.id
+  end
+  
 end
